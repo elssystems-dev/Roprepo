@@ -1,0 +1,31 @@
+main {
+    gap: 2rem;
+}
+
+.robux-advice {
+    width: 100%;
+}
+
+.game-card-link {
+    width: clamp(10rem, 25vw, 15rem);
+}
+
+.rewarding-games {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.plus-advise {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.plus-advise .btn {
+    width: unset;
+}
+
+.game-card-container {
+    overflow-x: unset;
+    flex-wrap: wrap;
+}

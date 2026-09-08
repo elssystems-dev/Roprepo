@@ -1,0 +1,60 @@
+main {
+    gap: 4rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-greetings {
+    display: flex;
+    align-items: center;
+    height: clamp(6.25rem, 10vh, 12.5rem);
+    gap: 1rem;
+}
+
+main .user-pfp {
+    width: clamp(5rem, 10vw, 10rem);
+}
+
+main > h1 {
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); 
+    font-weight: 700;
+}
+
+h2 {
+    font-size: clamp(1rem, 3.5vw, 2rem); 
+}
+
+.user-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.step-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    width: clamp(5rem, 7.5vw, 8rem);
+    text-align: center;
+}
+
+.step-option img {
+    transition: filter 0.3s;
+}
+
+.step-option:hover img {
+    filter: drop-shadow(0 0 8px var(--text-color));
+}
+
+.step-option img {
+    height: 100%;
+}

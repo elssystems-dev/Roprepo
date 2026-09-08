@@ -1,0 +1,60 @@
+main {
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    padding-block: clamp(1.5rem, 5vh, 4rem);
+    padding-inline: clamp(2rem, 10vw, 5rem);
+}
+
+main::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(../../img/system/login-background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
+    transform: scale(1.05); /* evita bordas vazadas */
+    z-index: 0;
+}
+
+main > * {
+    position: relative;
+    z-index: 1;
+}
+
+.acess-form {
+    background-color: var(--background-color);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    padding: 1rem 0.5rem;
+    width: clamp(18.5rem, 40vw, 30rem);
+    min-height: 25rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.acess-form h1 {
+    font-size: clamp(1.35rem, 20vw, 2rem);
+}
+
+.input-group input {
+    width: 85%;
+}
+
+.form-acess a {
+    color: inherit;
+    font-weight: 500;
+}
+
+footer {
+    min-height: 10vh;
+    padding: 1.5rem;
+    font-size: clamp(0.75rem, 5vw, 1rem);
+}

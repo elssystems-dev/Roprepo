@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-thin-100.otf) format(opentype);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-light-300.otf) format(opentype);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-regular-400.otf) format(opentype);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-medium-500.otf) format(opentype);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-semibold-600.otf) format(opentype);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-bold-700.otf) format(opentype);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Builder Sans";
+    src: url(../../fonts/builder-sans/builder-sans-extrabold-800.otf) format(opentype);
+    font-weight: 800;
+}

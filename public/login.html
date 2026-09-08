@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roprepo</title>
+    <link rel="stylesheet" href="/assets/css/base.css">
+
+    <link rel="stylesheet" href="/assets/css/global/fonts.css">
+    <link rel="stylesheet" href="/assets/css/global/root.css">
+    <link rel="stylesheet" href="/assets/css/global/utils.css">
+
+    <link rel="stylesheet" href="/assets/css/components/main.css">
+    <link rel="stylesheet" href="/assets/css/components/footer.css">
+
+    <link rel="stylesheet" href="/assets/css/pages/login.css">
+
+    <link rel="shortcut icon" href="/assets/icons/common/roprepo-icon.svg" type="image/x-icon">
+</head>
+<body class="dark-mode">
+    <main>
+        <form method="POST" class="acess-form" novalidate>
+            <h1>Welcome to Roprepo!</h1>
+            <div class="input-group">
+                <input type="text" name="username" id="userInput" placeholder="Your username here..." autocomplete="off">
+                <input type="email" name="email" id="emailInput" placeholder="Your email here..." class="hidden" autocomplete="off">
+                <input type="password" name="passwd" id="passwdInput" placeholder="Enter the password..." autocomplete="off">
+                <input type="password" name="passwdVerify" id="passwdVerifyInput" placeholder="Retype the password..." class="hidden" autocomplete="off">
+                <a href="#" id="sign-in-btn">Create account</a>
+                <span id="response-message" class="killed"></span>
+            </div>
+            <button type="submit" class='btn' id="submitBtn">Login</button>
+        </form>
+    </main>
+    <footer>
+        <span>&copy 2026 All rights reserved to Roblox Corporation (Made by <a href="https://github.com/elssystems-dev/" class="els-media" target="_blank">ELS Systems</a>)</span>
+    </footer>
+</body>
+<script src="/assets/js/global/url-cleaner.js"></script>
+<script src="/assets/js/pages/login.js" defer></script>
+</html>

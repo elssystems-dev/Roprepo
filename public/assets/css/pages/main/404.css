@@ -1,0 +1,11 @@
+main {
+    text-align: center;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+main img {
+    aspect-ratio: 1 / 1;
+    width: clamp(15rem, 25vw, 30rem);
+}

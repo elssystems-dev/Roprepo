@@ -1,0 +1,124 @@
+header {
+    height: 6vh;
+    min-height: 50px;
+    background-color: var(--surface-color);
+    display: flex;
+    padding: 0 1rem;
+    gap: clamp(1rem, 2vw, 3rem);
+    align-items: stretch;
+}
+
+.nav-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link{
+    align-items: center;
+    font-weight: 500;
+}
+
+.nav-link:hover {border-bottom-color: var(--text-color);}
+
+.roprepo-logo {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.roprepo-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.roprepo-logo-img {height: 85%;}
+
+.logo-icon {display: none;}
+
+.page-switch {
+    display: flex;
+    justify-content: space-evenly;
+    gap: clamp(10px, 2vw, 30px);
+    flex-shrink: 0;
+}
+
+.search-bar {
+    height: 85%;
+    flex-grow: 1;
+    min-width: 100px;
+    max-width: 24%;
+    align-self: center;
+}
+
+.user-section {
+    flex-shrink: 0; 
+    height: 100%;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 1rem;
+}
+
+.profile-src {
+    height: 85%;
+    display: flex;
+    align-items: center;
+}
+
+header .user-pfp {height: 95%}
+
+.robux-card {
+    display: flex;
+    align-items: center;
+    height: 80%;
+    gap: 0.35rem;
+    text-wrap: nowrap;
+    padding: 0.3rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.robux-card p {font-weight: 600;}
+
+.robux-card:hover {
+    background-color: var(--pressed-surface);
+    cursor: pointer;
+}
+
+.robux {height: 70%;}
+
+.theme-mode {
+    height: 75%;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+}
+
+.theme-mode-img {height: 100%;}
+
+/* DARK MODE */
+.logo-white {display: none;}
+body.dark-mode .logo-black {display: none;}
+body.dark-mode .logo-white {display: block;}
+
+/* MEDIA QUERIES */
+@media (max-width: 780px) {
+    .logo-text {display: none !important;}
+    .logo-icon {display: block;}
+}
+
+@media (max-width: 590px) {
+    .search-bar {max-width: none;}
+    .page-switch {display: none;}
+}
+
+@media (max-width: 380px) {
+    .robux-card {display: none;}
+    .theme-mode {display: none;}
+}

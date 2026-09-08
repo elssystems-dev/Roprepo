@@ -1,0 +1,3 @@
+*
+!.gitignore
+# Explicação: Esta pasta em produção armazenará todas as fotos que os usuários publicam. Portanto, o ideal é deixá-la vazia aqui.

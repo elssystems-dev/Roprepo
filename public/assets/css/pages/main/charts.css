@@ -1,0 +1,49 @@
+main {gap: 2rem;}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* CONFIGURAÇÃO DAS SETAS COPIANDO O VISUAL DA SUA FOTO */
+.page-control {
+    background-color: var(--pressed-surface); /* Fundo escuro idêntico ao print */
+    color: var(--text-color);
+    border: none;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    z-index: 10;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, background-color 0.2s, transform 0.2s, visibility 0.2s;
+    /* O SEGREDO DO MEIO DA IMAGEM:
+       Como a imagem do card é estritamente 1/1 (quadrada), a altura dela é IDÊNTICA à largura do card.
+       A largura do card é definida por: clamp(10rem, 10vw, 15rem).
+       Então, o meio exato da imagem está em: metade da largura do card! */
+    top: calc(clamp(10rem, 10vw, 15rem) / 2);
+    
+    transform: translateY(-50%); 
+}
+
+.page-control:hover {
+    opacity: 1;
+    background-color: #504c4c;
+    transform: translateY(-50%) scale(1.05); /* Mantém o alinhamento e cresce levemente */
+}
+
+.go-backward {
+    left: 8px;
+}
+
+.go-forward {
+    right: 8px;
+}

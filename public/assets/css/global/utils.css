@@ -1,0 +1,132 @@
+.btn {
+    padding: var(--input-padding);
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    width: 60%;
+    transition: background-color 0.3s, color 0.4s, border-color 1s, border 1s;
+    font-weight: 700;
+}
+
+.btn:hover {
+    background-color: var(--pressed-surface);
+}
+
+.failed-input {
+    border: 1px solid rgb(148, 19, 19);
+}
+
+.warning {
+    border: 1px solid #d1ce34;
+}
+
+.error-message {
+    color: rgb(148, 19, 19);
+    transition: color 0.3s ease;
+}
+
+.no-transition, .no-transition * {
+    transition: none !important;
+}
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+    pointer-events: none;
+}
+
+.killed {
+    display: none !important;
+}
+
+.invisible-text {
+    color: transparent;
+}
+
+.highlight-border {
+    border-color: var(--text-color) !important;
+}
+
+.blocked > * {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.user-pfp {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: center;
+}
+
+.game-display {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.game-navigation {
+    display: flex;
+    position: relative;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.game-card-container {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    max-width: 100%;
+}
+
+.game-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    width: clamp(10rem, 10vw, 15rem);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+.game-card-thumb-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--pressed-surface);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.game-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+body.modal-open {
+    overflow: hidden;
+}

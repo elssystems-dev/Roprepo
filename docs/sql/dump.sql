@@ -1,0 +1,562 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict NcMm0JsxTVfmiLvZvm4o1Hp3JuWeVsxAiuQADaRAxpiXQknhOwr6mFKMEwbNWDF
+
+-- Dumped from database version 18.2
+-- Dumped by pg_dump version 18.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.games (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    game_thumb text,
+    point_multiplier real DEFAULT 0.15,
+    likes integer DEFAULT 0,
+    released_at date
+);
+
+
+ALTER TABLE public.games OWNER TO postgres;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.games_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.games_id_seq OWNER TO postgres;
+
+--
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
+
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.roles (
+    id smallint NOT NULL,
+    name character varying(15) DEFAULT 'user'::character varying
+);
+
+
+ALTER TABLE public.roles OWNER TO postgres;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.roles_id_seq
+    AS smallint
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.roles_id_seq OWNER TO postgres;
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.roles_id_seq OWNED BY public.roles.id;
+
+
+--
+-- Name: titles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.titles (
+    id integer NOT NULL,
+    name text NOT NULL,
+    color_hex character(7) DEFAULT NULL::bpchar,
+    price integer DEFAULT 100 NOT NULL,
+    likes integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.titles OWNER TO postgres;
+
+--
+-- Name: titles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.titles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.titles_id_seq OWNER TO postgres;
+
+--
+-- Name: titles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.titles_id_seq OWNED BY public.titles.id;
+
+
+--
+-- Name: user_game_likes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_game_likes (
+    user_id bigint NOT NULL,
+    game_id integer NOT NULL,
+    liked_at timestamp with time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.user_game_likes OWNER TO postgres;
+
+--
+-- Name: user_games; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_games (
+    user_id bigint NOT NULL,
+    game_id integer NOT NULL,
+    time_played_minutes integer DEFAULT 0 NOT NULL,
+    last_accessed_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.user_games OWNER TO postgres;
+
+--
+-- Name: user_roles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_roles (
+    user_id bigint NOT NULL,
+    role_id smallint NOT NULL
+);
+
+
+ALTER TABLE public.user_roles OWNER TO postgres;
+
+--
+-- Name: user_title_likes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_title_likes (
+    user_id bigint NOT NULL,
+    title_id integer NOT NULL,
+    liked_at timestamp with time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.user_title_likes OWNER TO postgres;
+
+--
+-- Name: user_titles; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_titles (
+    user_id bigint NOT NULL,
+    title_id integer NOT NULL
+);
+
+
+ALTER TABLE public.user_titles OWNER TO postgres;
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    username character varying(20) NOT NULL,
+    email character varying(255) NOT NULL,
+    password_hash character varying(255) NOT NULL,
+    pfp_url text,
+    bio text DEFAULT 'I''m a Roprepian!'::text,
+    robux integer DEFAULT 0 NOT NULL,
+    dark_mode boolean DEFAULT true,
+    is_plus boolean DEFAULT false,
+    active_title integer DEFAULT 1,
+    created_at timestamp with time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: games id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
+
+
+--
+-- Name: roles id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles ALTER COLUMN id SET DEFAULT nextval('public.roles_id_seq'::regclass);
+
+
+--
+-- Name: titles id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.titles ALTER COLUMN id SET DEFAULT nextval('public.titles_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: games; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.games (id, name, description, game_thumb, point_multiplier, likes, released_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.roles (id, name) FROM stdin;
+1	user
+2	admin
+\.
+
+
+--
+-- Data for Name: titles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.titles (id, name, color_hex, price, likes) FROM stdin;
+1	Player	\N	0	0
+\.
+
+
+--
+-- Data for Name: user_game_likes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_game_likes (user_id, game_id, liked_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_games; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_games (user_id, game_id, time_played_minutes, last_accessed_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_roles (user_id, role_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_title_likes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_title_likes (user_id, title_id, liked_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_titles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_titles (user_id, title_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, username, email, password_hash, pfp_url, bio, robux, dark_mode, is_plus, active_title, created_at) FROM stdin;
+\.
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.games_id_seq', 1, false);
+
+
+--
+-- Name: roles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.roles_id_seq', 2, true);
+
+
+--
+-- Name: titles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.titles_id_seq', 1, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+
+
+--
+-- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles roles_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_name_key UNIQUE (name);
+
+
+--
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: titles titles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.titles
+    ADD CONSTRAINT titles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_game_likes user_game_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_game_likes
+    ADD CONSTRAINT user_game_likes_pkey PRIMARY KEY (user_id, game_id);
+
+
+--
+-- Name: user_games user_games_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_games
+    ADD CONSTRAINT user_games_pkey PRIMARY KEY (user_id, game_id);
+
+
+--
+-- Name: user_roles user_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_roles
+    ADD CONSTRAINT user_roles_pkey PRIMARY KEY (user_id, role_id);
+
+
+--
+-- Name: user_title_likes user_title_likes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_title_likes
+    ADD CONSTRAINT user_title_likes_pkey PRIMARY KEY (user_id, title_id);
+
+
+--
+-- Name: user_titles user_titles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_titles
+    ADD CONSTRAINT user_titles_pkey PRIMARY KEY (user_id, title_id);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
+
+
+--
+-- Name: user_game_likes user_game_likes_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_game_likes
+    ADD CONSTRAINT user_game_likes_game_id_fkey FOREIGN KEY (game_id) REFERENCES public.games(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_game_likes user_game_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_game_likes
+    ADD CONSTRAINT user_game_likes_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_games user_games_game_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_games
+    ADD CONSTRAINT user_games_game_id_fkey FOREIGN KEY (game_id) REFERENCES public.games(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_games user_games_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_games
+    ADD CONSTRAINT user_games_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_roles user_roles_role_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_roles
+    ADD CONSTRAINT user_roles_role_id_fkey FOREIGN KEY (role_id) REFERENCES public.roles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_roles user_roles_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_roles
+    ADD CONSTRAINT user_roles_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_title_likes user_title_likes_title_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_title_likes
+    ADD CONSTRAINT user_title_likes_title_id_fkey FOREIGN KEY (title_id) REFERENCES public.titles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_title_likes user_title_likes_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_title_likes
+    ADD CONSTRAINT user_title_likes_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_titles user_titles_title_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_titles
+    ADD CONSTRAINT user_titles_title_id_fkey FOREIGN KEY (title_id) REFERENCES public.titles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_titles user_titles_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_titles
+    ADD CONSTRAINT user_titles_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users users_active_title_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_active_title_fkey FOREIGN KEY (active_title) REFERENCES public.titles(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict NcMm0JsxTVfmiLvZvm4o1Hp3JuWeVsxAiuQADaRAxpiXQknhOwr6mFKMEwbNWDF
+

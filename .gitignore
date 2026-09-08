@@ -1,0 +1,2 @@
+# Não expõe os dados sensíveis de conexão do Backend
+/.env

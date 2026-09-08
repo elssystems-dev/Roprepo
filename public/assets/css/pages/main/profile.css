@@ -1,0 +1,182 @@
+body {
+    display: grid;
+    grid-template-columns: clamp(220px, 20vw, 320px) 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+
+header {grid-area: header;}
+
+.profile-control {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-color) transparent;
+}
+
+.profile-control .btn {
+    width: clamp(70%, 20vw, 90%);
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-control .btn:hover {
+    background-color: var(--pressed-surface);
+}
+
+.profile-control .btn img {
+    width: clamp(1.5rem, 10vw, 2rem)
+}
+
+main {
+    grid-area: main;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile-display {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--pressed-surface);
+    padding: 1.5rem;
+    gap: 0.5rem;
+    border-radius: 20px;
+    border: 1px solid gray;
+}
+
+.user-profile-display h1 {
+    background-color: var(--pressed-surface);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.user-profile-display .user-pfp {
+    width: clamp(10rem, 20vw, 17.5rem);
+}
+
+.user-info {
+    text-align: left;
+    background-color: var(--pressed-surface);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.card {
+    background-color: var(--pressed-surface);
+    min-height: 7rem;
+    width: 95%;
+    display: flex;
+    padding: 1.5rem;
+    border-radius: 15px;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+    overflow: hidden;
+}
+
+.card h3 {
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+    flex-grow: 1;
+    text-align: left;
+    margin: 0;
+}
+
+.game-card a {
+    height: clamp(3rem, 5vw + 1rem, 5rem); 
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    display: block;
+}
+
+.game-card a > img {
+    height: 100%;
+    width: 100%;
+    border-radius: 15%;
+    object-fit: cover;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    text-wrap: nowrap;
+}
+
+.card .btn {width: unset;}
+
+.user-card .user-pfp {
+    width: clamp(10%, 15vw, 20%);
+    border-radius: 15%;
+}
+
+.modal-centralize {align-self: center;} /* Util nichada: Apenas para centralizar divs no modal da página*/
+
+.modal-body textarea {
+    width: 90%;
+    background-color: var(--pressed-surface);
+    resize: none;
+    min-height: 20%;
+    transition: all 0.4s;
+    outline: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.modal-body textarea:hover {
+    background-color: var(--pressed-surface);
+}
+
+.modal-body textarea:focus {
+    border-color: var(--text-color);
+}
+
+.modal-body .modal-pfp {
+    width: clamp(10rem, 15vw, 20rem);
+}
+
+#avatar-input {
+    display: none;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--pressed-surface);
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.upload-label:hover {
+    background-color: #3a3a3a;
+}
+
+footer {grid-area: footer;}
+
+@media screen and (width <= 780px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+    }
+}
